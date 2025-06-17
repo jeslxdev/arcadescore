@@ -1,0 +1,42 @@
+<div class="ranking-container">
+  <h2>Ranking</h2>
+  <ng-container *ngIf="(scores$ | async) as scores">
+    <table class="ranking-table" *ngIf="scores.length > 0; else noRanking">
+      <thead>
+        <tr>
+          <th>Posição</th>
+          <th>Nome</th>
+          <th>Pontos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let score of scores | slice:0:10; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>
+            <a href="#" (click)="openPlayerStats(score.player, $event)">{{ score.player }}</a>
+          </td>
+          <td>{{ score.points }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #noRanking>
+      <div class="no-ranking">Sem rankins construídos</div>
+    </ng-template>
+  </ng-container>
+
+  <div class="modal-backdrop" *ngIf="showModal" (click)="closeModal()"></div>
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <h3>Estatísticas de {{ playerStats?.player }}</h3>
+      <ul *ngIf="playerStats">
+        <li>Partidas jogadas: {{ playerStats.totalGames }}</li>
+        <li>Média de Pontuação: {{ playerStats.averageScore | number:'1.2-2' }}</li>
+        <li>Maior Pontuação: {{ playerStats.highestScore }}</li>
+        <li>Menor Pontuação: {{ playerStats.lowestScore }}</li>
+        <li>Quantidade de vezes que bateu o próprio recorde: {{ playerStats.recordBeatenTimes }}</li>
+        <li>Tempo que joga: {{ playerStats.playingTime }}</li>
+      </ul>
+      <button (click)="closeModal()">Fechar</button>
+    </div>
+  </div>
+</div>

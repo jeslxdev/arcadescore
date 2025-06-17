@@ -1,0 +1,16 @@
+<div class="register-container">
+  <h2>Registrar Pontuação</h2>
+  <form [formGroup]="scoreForm" (ngSubmit)="submit()">
+    <label>Jogador
+      <input formControlName="player" placeholder="Nome do jogador" />
+    </label>
+    <label>Pontuação
+      <input type="number" formControlName="points" min="0" />
+    </label>
+    <label>Data
+      <input type="datetime-local" formControlName="date" />
+    </label>
+    <button type="submit" [disabled]="!scoreForm.valid">Registrar</button>
+  </form>
+  <div *ngIf="message" class="success">{{ message }}</div>
+</div>

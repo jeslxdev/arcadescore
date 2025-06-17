@@ -1,0 +1,44 @@
+# .NET build
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# Rider
+.idea/
+*.sln.iml
+
+# Logs
+*.log
+
+# Test results
+TestResults/
+
+# Dotnet tools
+*.dbmdl
+*.pdb
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Others
+*.swp
+*.bak
+*.tmp
+
+# Publish
+publish/
+
+# Secrets
+secrets.json
+
+# npm (caso use frontend Angular na mesma pasta)
+node_modules/
